@@ -9,29 +9,30 @@ module mapScene(
 );
     reg [11:0] rgb_reg;
 	reg [9:0] center_x, center_y;
-	wire renderPlayer;
+	wire renderPlayer, renderGrid;
 	
 	initial
     begin
-        center_x = 9'd320;
-        center_y = 9'd240;
+        center_x = 9'd4;
+        center_y = 9'd476;
         rgb_reg = 12'hFFF;
     end
     
-    renderer circle(renderPlayer, {22'd0, center_x}, {22'd0,center_y}, {22'd0,x}, {22'd0,y}, 100); 
-    
-    assign out = renderPlayer ? rgb_reg : 12'b0;
+    renderer circle(renderPlayer, {22'd0, center_x}, {22'd0,center_y}, {22'd0,x}, {22'd0,y}, 4); 
+    gridRenderer grid(renderGrid, {22'd0,x}, {22'd0,y}, 8);
+   
+    assign out = (renderPlayer || renderGrid) ? rgb_reg : 12'b0;
 
     always @(posedge clk)
     begin
         if (kbControl == 119) //w
-            center_y <= center_y - 1;
+            center_y <= center_y - 8;
         else if (kbControl == 97) //a
-            center_x <= center_x - 1;
+            center_x <= center_x - 8;
         else if (kbControl == 115) //s
-            center_y <= center_y + 1;
+            center_y <= center_y + 8;
         else if (kbControl == 100) //d
-            center_x <= center_x + 1;
+            center_x <= center_x + 8;
         else if (kbControl == 99) //c
             rgb_reg <= 12'h0FF;
         else if (kbControl == 109) //m

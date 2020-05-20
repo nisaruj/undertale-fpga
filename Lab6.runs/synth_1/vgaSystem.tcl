@@ -32,6 +32,7 @@ set_property ip_output_repo c:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.cache/i
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
   C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/fifo.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/gridRenderer.v
   C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/mapScene.v
   C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/renderer.v
   C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/uart.v
