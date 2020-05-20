@@ -12,13 +12,8 @@ module vgaSystem
 	wire reset;
 	assign reset = btnC;
 	
-	// register for Basys 2 8-bit RGB DAC
-	reg [11:0] rgb_reg;
-	
-	reg [9:0] center_x, center_y;
-	
-	always @(center_x, center_y)
-	   $display("(%d, %d)", center_x, center_y);
+	// Keypress event
+	reg [7:0] kbControl;
 	
 	/* VGA */
 	
@@ -32,27 +27,16 @@ module vgaSystem
 	// video status output from vga_sync to tell when to route out rgb signal to DAC
 	wire video_on;
 
-        // instantiate vga_sync
-        vga_sync vga_sync_unit (.clk(clk), .reset(0), .hsync(Hsync), .vsync(Vsync),
+    // instantiate vga_sync
+    vga_sync vga_sync_unit (.clk(clk), .reset(0), .hsync(Hsync), .vsync(Vsync),
                                 .video_on(video_on), .p_tick(), .x(x), .y(y));
-   
-        initial
-        begin
-            center_x = 9'd320;
-            center_y = 9'd240;
-            rgb_reg = 12'hFFF;
-        end
-        
-        // rgb buffer
-        always @(posedge clk, posedge reset)
-        if (reset)
-            rgb_reg <= 12'hFFF;
-        
-        wire render;
-        renderer circle(render, {22'd0, center_x}, {22'd0,center_y}, {22'd0,x}, {22'd0,y}, 100); 
-        // output
-        assign rgb = (render && video_on) ? rgb_reg : 12'b0;
-        
+    
+    wire [11:0] sceneRender;
+    mapScene scene1(sceneRender, kbControl, x, y, clk); 
+    
+    // TODO: Use Scene MUX for multiple scene
+    // output
+    assign rgb = video_on ? sceneRender : 12'b0;
         
     /* UART */
     
@@ -99,32 +83,15 @@ module vgaSystem
            // ECHO HERE
            transmit <= 1'b1;
            rx_fifo_pop <= 1'b1;
-           
+            
+           // To upper case    
            tx_byte <= rx_byte - 8'h20;
-           if (rx_byte == 119) //w
-                center_y <= center_y - 1;
-           else if (rx_byte == 97) //a
-                center_x <= center_x - 1;
-           else if (rx_byte == 115) //s
-                center_y <= center_y + 1;
-           else if (rx_byte == 100) //d
-                center_x <= center_x + 1;
-           else if (rx_byte == 99) //c
-                rgb_reg <= 12'h0FF;
-           else if (rx_byte == 109) //m
-                rgb_reg <= 12'hF0F;
-           else if (rx_byte == 121) //y
-                rgb_reg <= 12'hFF0;
-           else if (rx_byte == 32)//space
-           begin
-                rgb_reg <= 12'hFFF;
-                tx_byte <= 90; //Z
-           end
-           else transmit <= 1'b0; // Send nothing
+           kbControl <= rx_byte;
         end else begin
            tx_byte <= 8'h00;
            transmit <= 1'b0;
            rx_fifo_pop <= 1'b0;
+           kbControl <= 8'h00;
         end
      end // else: !if(RESET)                      
     

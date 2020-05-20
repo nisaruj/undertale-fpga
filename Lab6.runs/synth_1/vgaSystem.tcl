@@ -23,20 +23,21 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.cache/wt [current_project]
-set_property parent.project_path C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.cache/wt [current_project]
+set_property parent.project_path C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
-set_property ip_output_repo c:/Users/Nisaruj/HWSynLab/Lab6/Lab6.cache/ip [current_project]
+set_property ip_output_repo c:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
-  C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/sources_1/new/fifo.v
-  C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/sources_1/new/renderer.v
-  C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/sources_1/new/uart.v
-  C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/sources_1/new/uart_fifo.v
-  C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/sources_1/new/vga_sync.v
-  C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/sources_1/new/vga_sys.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/fifo.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/mapScene.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/renderer.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/uart.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/uart_fifo.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/vga_sync.v
+  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/vga_sys.v
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -46,8 +47,8 @@ read_verilog -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files C:/Users/Nisaruj/HWSynLab/Lab6/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc]
+read_xdc C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
+set_property used_in_implementation false [get_files C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

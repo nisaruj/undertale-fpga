@@ -1,6 +1,7 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
 "../../../../Lab6.srcs/sources_1/new/fifo.v" \
+"../../../../Lab6.srcs/sources_1/new/mapScene.v" \
 "../../../../Lab6.srcs/sources_1/new/renderer.v" \
 "../../../../Lab6.srcs/sources_1/new/uart.v" \
 "../../../../Lab6.srcs/sources_1/new/uart_fifo.v" \
