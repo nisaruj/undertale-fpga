@@ -32,7 +32,7 @@ module vgaSystem
                                 .video_on(video_on), .p_tick(), .x(x), .y(y));
     
     wire [11:0] sceneRender;
-    mapScene scene1(sceneRender, kbControl, x, y, clk); 
+    SceneRenderer current_scene(sceneRender, kbControl, x, y, clk); 
     
     // TODO: Use Scene MUX for multiple scene
     // output
