@@ -2,13 +2,12 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Fri May 22 20:46:35 2020
-# Process ID: 2848
+# Start of session at: Fri May 22 20:54:31 2020
+# Process ID: 4252
 # Current directory: C:/Users/Nisaruj/Desktop/undertale-fpga
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7084 C:\Users\Nisaruj\Desktop\undertale-fpga\Lab6.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4620 C:\Users\Nisaruj\Desktop\undertale-fpga\Lab6.xpr
 # Log file: C:/Users/Nisaruj/Desktop/undertale-fpga/vivado.log
 # Journal file: C:/Users/Nisaruj/Desktop/undertale-fpga\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.xpr
-update_compile_order -fileset sources_1
