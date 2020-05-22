@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Fri May 22 19:04:24 2020
+| Date         : Fri May 22 21:13:46 2020
 | Host         : DESKTOP-Keng running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file vgaSystem_control_sets_placed.rpt
 | Design       : vgaSystem
@@ -24,7 +24,7 @@ Table of Contents
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
 | Number of unique control sets                            |    27 |
-| Unused register locations in slices containing registers |    34 |
+| Unused register locations in slices containing registers |    36 |
 +----------------------------------------------------------+-------+
 
 
@@ -50,12 +50,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              43 |           23 |
+| No           | No                    | No                     |              49 |           26 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              30 |           17 |
-| Yes          | No                    | No                     |              53 |           22 |
+| No           | Yes                   | No                     |              30 |           15 |
+| Yes          | No                    | No                     |              53 |           24 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             128 |           33 |
+| Yes          | Yes                   | No                     |             128 |           30 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -68,30 +68,30 @@ Table of Contents
 |  clk_IBUF_BUFG | uart_fifo/uart_inst/tx_out_i_1_n_0               |                                             |                1 |              1 |
 |  clk_IBUF_BUFG | uart_fifo/uart_inst/rx_bits_remaining[3]_i_1_n_0 |                                             |                1 |              4 |
 |  clk_IBUF_BUFG |                                                  | uart_fifo/uart_inst/rx_countdown[5]_i_1_n_0 |                3 |              6 |
-|  clk_IBUF_BUFG |                                                  | uart_fifo/tx_fifo/SR[0]                     |                6 |              8 |
-|  clk_IBUF_BUFG | kbControl[7]_i_1_n_0                             |                                             |                4 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/uart_inst/rx_data[7]_i_1_n_0           |                                             |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[6][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[7][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[2][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[5][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[0][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[3][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[1][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[4][7]_i_1_n_0           | btnC_IBUF                                   |                1 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[5][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[6][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[3][7]_i_1__0_n_0        | btnC_IBUF                                   |                3 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[0][7]_i_1__0_n_0        | btnC_IBUF                                   |                3 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[1][7]_i_1__0_n_0        | btnC_IBUF                                   |                3 |              8 |
+|  clk_IBUF_BUFG |                                                  | uart_fifo/tx_fifo/SR[0]                     |                4 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/uart_inst/rx_data[7]_i_1_n_0           |                                             |                3 |              8 |
+|  clk_IBUF_BUFG | kbControl[7]_i_1_n_0                             |                                             |                3 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[4][7]_i_1__0_n_0        | btnC_IBUF                                   |                1 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[0][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[7][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[5][7]_i_1__0_n_0        | btnC_IBUF                                   |                1 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[3][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
 |  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[2][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[4][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
-|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[7][7]_i_1__0_n_0        | btnC_IBUF                                   |                1 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[1][7]_i_1__0_n_0        | btnC_IBUF                                   |                1 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/tx_fifo/memory[6][7]_i_1__0_n_0        | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[0][7]_i_1_n_0           | btnC_IBUF                                   |                3 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[1][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[6][7]_i_1_n_0           | btnC_IBUF                                   |                1 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[7][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[5][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[2][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[4][7]_i_1_n_0           | btnC_IBUF                                   |                2 |              8 |
+|  clk_IBUF_BUFG | uart_fifo/rx_fifo/memory[3][7]_i_1_n_0           | btnC_IBUF                                   |                3 |              8 |
 |  clk_IBUF_BUFG | vga_sync_unit/h_count_reg[9]_i_1_n_0             |                                             |                4 |             10 |
-|  clk_IBUF_BUFG | vga_sync_unit/v_count_reg0                       |                                             |                4 |             10 |
-|  clk_IBUF_BUFG | uart_fifo/uart_inst/tx_bits_remaining            |                                             |                6 |             12 |
+|  clk_IBUF_BUFG | vga_sync_unit/v_count_reg0                       |                                             |                5 |             10 |
+|  clk_IBUF_BUFG | uart_fifo/uart_inst/tx_bits_remaining            |                                             |                7 |             12 |
 |  clk_IBUF_BUFG |                                                  | btnC_IBUF                                   |                8 |             16 |
-|  clk_IBUF_BUFG |                                                  |                                             |               23 |             43 |
+|  clk_IBUF_BUFG |                                                  |                                             |               26 |             49 |
 +----------------+--------------------------------------------------+---------------------------------------------+------------------+----------------+
 
 
