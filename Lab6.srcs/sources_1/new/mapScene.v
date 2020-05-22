@@ -9,7 +9,7 @@ module mapScene(
 );
     reg [11:0] rgb_reg;
 	reg [9:0] center_x, center_y;
-	wire renderPlayer, renderGrid;
+	wire renderPlayer, renderGrid, renderText;
 	
 	initial
     begin
@@ -18,11 +18,13 @@ module mapScene(
         rgb_reg = 12'hFFF;
     end
     
+    textRenderer text(renderText, {22'd0,x}, {22'd0,y}, clk);
     renderer circle(renderPlayer, {22'd0, center_x}, {22'd0,center_y}, {22'd0,x}, {22'd0,y}, 4); 
     gridRenderer grid(renderGrid, {22'd0,x}, {22'd0,y}, 8);
    
-    assign out = (renderPlayer || renderGrid) ? rgb_reg : 12'b0;
-
+//    assign out = (renderPlayer || renderGrid || renderText) ? rgb_reg : 12'b0;
+    assign out = renderText ? rgb_reg : 12'b0;
+    
     always @(posedge clk)
     begin
         if (kbControl == 119) //w

@@ -1,8 +1,8 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date                      : Wed May 20 22:20:56 2020
-| Host                      : DESKTOP-6R0H53K running 64-bit major release  (build 9200)
+| Date                      : Fri May 22 19:04:24 2020
+| Host                      : DESKTOP-Keng running 64-bit major release  (build 9200)
 | Command                   : report_io -file vgaSystem_io_placed.rpt
 | Design                    : vgaSystem
 | Device                    : xc7a35t

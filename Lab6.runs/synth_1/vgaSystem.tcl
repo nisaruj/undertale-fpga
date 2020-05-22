@@ -18,27 +18,34 @@ proc create_report { reportName command } {
   }
 }
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.cache/wt [current_project]
-set_property parent.project_path C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.xpr [current_project]
+set_property webtalk.parent_dir D:/undertale-fpga/Lab6.cache/wt [current_project]
+set_property parent.project_path D:/undertale-fpga/Lab6.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
-set_property ip_output_repo c:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.cache/ip [current_project]
+set_property ip_output_repo d:/undertale-fpga/Lab6.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/fifo.v
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/gridRenderer.v
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/mapScene.v
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/renderer.v
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/uart.v
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/uart_fifo.v
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/vga_sync.v
-  C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/vga_sys.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/fifo.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/gridRenderer.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/mapScene.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/renderer.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/textRenderer.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/uart.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/uart_fifo.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/vga_sync.v
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/vga_sys.v
+}
+read_vhdl -library xil_defaultlib {
+  D:/VGA-Text-Generator/VGA-Text-Generator.srcs/sources_1/new/commonPak.vhd
+  D:/VGA-Text-Generator/VGA-Text-Generator.srcs/sources_1/new/Font_Rom.vhd
+  D:/undertale-fpga/Lab6.srcs/sources_1/new/Pixel_On_Text2.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -48,8 +55,8 @@ read_verilog -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc]
+read_xdc D:/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
+set_property used_in_implementation false [get_files D:/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

@@ -1,8 +1,8 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date             : Wed May 20 22:21:23 2020
-| Host             : DESKTOP-6R0H53K running 64-bit major release  (build 9200)
+| Date             : Fri May 22 19:04:59 2020
+| Host             : DESKTOP-Keng running 64-bit major release  (build 9200)
 | Command          : report_power -file vgaSystem_power_routed.rpt -pb vgaSystem_power_summary_routed.pb -rpx vgaSystem_power_routed.rpx
 | Design           : vgaSystem
 | Device           : xc7a35tcpg236-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.079        |
+| Total On-Chip Power (W)  | 0.076        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.008        |
+| Dynamic (W)              | 0.004        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -53,17 +53,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.001 |     1149 |       --- |             --- |
-|   LUT as Logic |     0.001 |      675 |     20800 |            3.25 |
-|   CARRY4       |    <0.001 |      126 |      8150 |            1.55 |
-|   Register     |    <0.001 |      273 |     41600 |            0.66 |
-|   F7/F8 Muxes  |    <0.001 |        8 |     32600 |            0.02 |
-|   Others       |     0.000 |       20 |       --- |             --- |
-| Signals        |     0.001 |     1178 |       --- |             --- |
-| DSPs           |     0.003 |        6 |        90 |            6.67 |
+| Slice Logic    |    <0.001 |      643 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      304 |     20800 |            1.46 |
+|   Register     |    <0.001 |      254 |     41600 |            0.61 |
+|   CARRY4       |    <0.001 |        3 |      8150 |            0.04 |
+|   Others       |     0.000 |       17 |       --- |             --- |
+| Signals        |    <0.001 |      517 |       --- |             --- |
+| Block RAM      |    <0.001 |      0.5 |        50 |            1.00 |
 | I/O            |    <0.001 |       18 |       106 |           16.98 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.079 |          |           |                 |
+| Total          |     0.076 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.017 |       0.008 |      0.010 |
+| Vccint    |       1.000 |     0.014 |       0.004 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -139,13 +138,15 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-------------+-----------+
-| Name        | Power (W) |
-+-------------+-----------+
-| vgaSystem   |     0.008 |
-|   scene1    |     0.005 |
-|     circle  |     0.004 |
-|   uart_fifo |     0.002 |
-+-------------+-----------+
++---------------+-----------+
+| Name          | Power (W) |
++---------------+-----------+
+| vgaSystem     |     0.004 |
+|   scene1      |     0.001 |
+|     text      |     0.001 |
+|       t1      |     0.001 |
+|   uart_fifo   |     0.002 |
+|     uart_inst |     0.001 |
++---------------+-----------+
 
 

@@ -60,6 +60,7 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {Common 17-41} -limit 10000000
 
 start_step init_design
 set ACTIVE_STEP init_design
@@ -70,12 +71,12 @@ set rc [catch {
   set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.cache/wt [current_project]
-  set_property parent.project_path C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.xpr [current_project]
-  set_property ip_output_repo C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.cache/ip [current_project]
+  set_property webtalk.parent_dir D:/undertale-fpga/Lab6.cache/wt [current_project]
+  set_property parent.project_path D:/undertale-fpga/Lab6.xpr [current_project]
+  set_property ip_output_repo D:/undertale-fpga/Lab6.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  add_files -quiet C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/synth_1/vgaSystem.dcp
-  read_xdc C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
+  add_files -quiet D:/undertale-fpga/Lab6.runs/synth_1/vgaSystem.dcp
+  read_xdc D:/undertale-fpga/Lab6.srcs/constrs_1/imports/HWSynLab/Basys-3-Master.xdc
   link_design -top vgaSystem -part xc7a35tcpg236-1
   close_msg_db -file init_design.pb
 } RESULT]
