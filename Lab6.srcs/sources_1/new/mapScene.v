@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 module mapScene(
-    output wire[11:0] out,
-    input wire[7:0] kbControl, //keyboard key
+    output [11:0] out,
+    input [7:0] kbControl, //keyboard key
     input [9:0] x,
     input [9:0] y,
     input clk
@@ -19,9 +19,9 @@ module mapScene(
     end
     
     renderer circle(renderPlayer, {22'd0, center_x}, {22'd0,center_y}, {22'd0,x}, {22'd0,y}, 4); 
-    gridRenderer grid(renderGrid, {22'd0,x}, {22'd0,y}, 8);
+//    gridRenderer grid(renderGrid, {22'd0,x}, {22'd0,y}, 8);
    
-    assign out = (renderPlayer || renderGrid) ? rgb_reg : 12'b0;
+    assign out = (renderPlayer /*|| renderGrid*/) ? rgb_reg : 12'b0;
 
     always @(posedge clk)
     begin
