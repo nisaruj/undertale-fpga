@@ -2,6 +2,7 @@
 
 module mapScene(
     output [11:0] out,
+    output reg sceneChangeTrigger,
     input [7:0] kbControl, //keyboard key
     input [9:0] x,
     input [9:0] y,
@@ -10,6 +11,10 @@ module mapScene(
     reg [11:0] rgb_reg;
 	reg [9:0] center_x, center_y;
 	wire renderPlayer, renderGrid;
+	
+	// 4bit Random number generator
+	wire [3:0] rng;
+	PRNG prng(rng, clk);
 	
 	initial
     begin
@@ -22,6 +27,16 @@ module mapScene(
 //    gridRenderer grid(renderGrid, {22'd0,x}, {22'd0,y}, 8);
    
     assign out = (renderPlayer /*|| renderGrid*/) ? rgb_reg : 12'b0;
+
+    // Change to battle scene randomly
+    always @(posedge clk)
+        if (kbControl > 0)
+            begin
+            if (rng > 4'd13)
+                sceneChangeTrigger <= 1;
+            end
+        else
+            sceneChangeTrigger <= 0;
 
     always @(posedge clk)
     begin

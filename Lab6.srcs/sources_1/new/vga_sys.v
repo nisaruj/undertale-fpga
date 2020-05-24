@@ -34,7 +34,6 @@ module vgaSystem
     wire [11:0] sceneRender;
     SceneRenderer current_scene(sceneRender, kbControl, x, y, clk); 
     
-    // TODO: Use Scene MUX for multiple scene
     // output
     assign rgb = video_on ? sceneRender : 12'b0;
         
