@@ -1,7 +1,6 @@
-*
-!*.v
-!*.vhd
-!*.xdc
+/*
+/*/
+!/Lab6.srcs/
 !.gitignore
 !*.xpr
 !README.md
