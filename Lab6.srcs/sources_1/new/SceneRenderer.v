@@ -12,16 +12,30 @@ module SceneRenderer(
     reg [N_SCENE_BIT - 1: 0] scene_state;
     wire [11:0] rgb_out [2 ** N_SCENE_BIT - 1:0];
     wire switchToBattleScene, switchToMapScene;
+    wire [31:0] attackDamage;
 
     //scene rgb
     textRenderer(rgb_out[0], x, y, clk);
     mapScene scene1(rgb_out[1], switchToBattleScene, kbControl, x, y, clk);
-    battleScene scene2(rgb_out[2], switchToMapScene, kbControl, x, y, clk);
+    battleScene scene2(rgb_out[2], switchToMapScene, attackDamage, kbControl, x, y, clk);
+    
+    // HP Bar
+    reg [31:0] playerHP, enemyHP;
+    wire [11:0] playerBarRgb, enemyBarRgb;
+    wire renderPlayerHP, renderEnemyHP;
+    
+    hpRenderer playerHPBar(renderPlayerHP, x, y, 80, 20, 10, playerHP);
+    assign playerBarRgb = (scene_state > 0 && renderPlayerHP) ? 12'h0F0 : 12'h000;
+    
+    hpRenderer enemyHPBar(renderEnemyHP, x, y, 80, 40, 10, enemyHP);
+    assign enemyBarRgb = (scene_state > 0 && renderEnemyHP) ? 12'hF00 : 12'h000;
     
     // scene decoder
     initial
     begin
         scene_state = 1'b0;
+        playerHP = 32'd480;
+        enemyHP = 32'd480;
     end
     
     always @(posedge clk)
@@ -31,9 +45,12 @@ module SceneRenderer(
         else if (scene_state == 1 && switchToBattleScene)
             scene_state <= 2;
         else if (scene_state == 2 && switchToMapScene)
+        begin
+            enemyHP <= enemyHP - attackDamage;
             scene_state <= 1;
+        end
     end
     
-    assign rgb = rgb_out[scene_state];
+    assign rgb = rgb_out[scene_state] | playerBarRgb | enemyBarRgb;
     
 endmodule

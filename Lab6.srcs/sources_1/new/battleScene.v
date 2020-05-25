@@ -3,6 +3,7 @@
 module battleScene(
     output [11:0] rgb,
     output reg attacked,
+    output reg [31:0] attackDamage,
     input [7:0] kbControl,
     input [31:0] x,
     input [31:0] y,
@@ -37,9 +38,15 @@ module battleScene(
     always @(posedge clk)
     begin
         if (kbControl == 32) //space 
+        begin
             attacked <= 1;
+            attackDamage <= 60 - (attackPenalty * 5 / 10);
+        end
         else
+        begin
             attacked <= 0;
+            attackDamage <= 0;
+        end
     end
     
     // Moving gauge pointer
