@@ -1,5 +1,5 @@
 *
-!Lab6.srcs/**
+!Lab6.srcs/**/
 !.gitignore
 !*.xpr
 !README.md
