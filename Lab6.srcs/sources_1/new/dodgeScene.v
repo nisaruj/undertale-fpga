@@ -7,6 +7,7 @@ module dodgeScene(
     input [7:0] kbControl,
     input [31:0] x,
     input [31:0] y,
+    input isActive,
     input reset,
     input clk
     );
@@ -35,22 +36,25 @@ module dodgeScene(
     
     always @(posedge clk)
     begin
+        wasAttacked <= 0;
         if (reset)
         begin
             center_x = 320;
             center_y = 360;
         end
-        else if (kbControl == 119 && center_y > 280) //w
-            center_y <= center_y - 2;
-        else if (kbControl == 97 && center_x > 160) //a
-            center_x <= center_x - 2;
-        else if (kbControl == 115 && center_y < 440) //s
-            center_y <= center_y + 2;
-        else if (kbControl == 100 && center_x < 480) //d
-            center_x <= center_x + 2;
-        else if (kbControl == 32)
-            wasAttacked <= 1;
-        else wasAttacked <= 0;
+        else if (isActive)
+        begin
+            if (kbControl == 119 && center_y > 280) //w
+                center_y <= center_y - 2;
+            else if (kbControl == 97 && center_x > 160) //a
+                center_x <= center_x - 2;
+            else if (kbControl == 115 && center_y < 440) //s
+                center_y <= center_y + 2;
+            else if (kbControl == 100 && center_x < 480) //d
+                center_x <= center_x + 2;
+            else if (kbControl == 32)
+                wasAttacked <= 1;
+        end
     end
     
     always @(posedge clk)

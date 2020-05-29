@@ -7,6 +7,7 @@ module battleScene(
     input [7:0] kbControl,
     input [31:0] x,
     input [31:0] y,
+    input isActive,
     input clk
 //    ,
 //    output reg [7:0] attackPenalty,
@@ -37,7 +38,7 @@ module battleScene(
         
     always @(posedge clk)
     begin
-        if (kbControl == 32) //space 
+        if (kbControl == 32 && isActive) //space 
         begin
             attacked <= 1;
             attackDamage <= 60 - (attackPenalty * 5 / 10);
