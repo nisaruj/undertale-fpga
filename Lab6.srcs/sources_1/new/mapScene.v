@@ -6,6 +6,7 @@ module mapScene(
     input [7:0] kbControl, //keyboard key
     input [9:0] x,
     input [9:0] y,
+    input isActive,
     input clk
 );
     reg [11:0] rgb_reg;
@@ -40,22 +41,25 @@ module mapScene(
 
     always @(posedge clk)
     begin
-        if (kbControl == 119) //w
-            center_y <= center_y - 8;
-        else if (kbControl == 97) //a
-            center_x <= center_x - 8;
-        else if (kbControl == 115) //s
-            center_y <= center_y + 8;
-        else if (kbControl == 100) //d
-            center_x <= center_x + 8;
-        else if (kbControl == 99) //c
-            rgb_reg <= 12'h0FF;
-        else if (kbControl == 109) //m
-            rgb_reg <= 12'hF0F;
-        else if (kbControl == 121) //y
-            rgb_reg <= 12'hFF0;
-        else if (kbControl == 32) //space
-            rgb_reg <= 12'hFFF;
+        if (isActive)
+        begin
+            if (kbControl == 119) //w
+                center_y <= center_y - 8;
+            else if (kbControl == 97) //a
+                center_x <= center_x - 8;
+            else if (kbControl == 115) //s
+                center_y <= center_y + 8;
+            else if (kbControl == 100) //d
+                center_x <= center_x + 8;
+            else if (kbControl == 99) //c
+                rgb_reg <= 12'h0FF;
+            else if (kbControl == 109) //m
+                rgb_reg <= 12'hF0F;
+            else if (kbControl == 121) //y
+                rgb_reg <= 12'hFF0;
+            else if (kbControl == 32) //space
+                rgb_reg <= 12'hFFF;
+        end
     end
     
 endmodule

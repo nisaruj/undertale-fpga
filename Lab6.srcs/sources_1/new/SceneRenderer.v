@@ -17,9 +17,9 @@ module SceneRenderer(
     //scene rgb
     reg [2 ** N_SCENE_BIT - 1: 0] reset_scene;
     textRenderer(rgb_out[0], x, y, clk);
-    mapScene scene1(rgb_out[1], switchToBattleScene, kbControl, x, y, clk);
-    battleScene scene2(rgb_out[2], switchToDodgeScene, attackDamage, kbControl, x, y, clk);
-    dodgeScene scene3(rgb_out[3], switchToMapScene, receiveDamage, kbControl, x, y, reset_scene[3], clk);
+    mapScene scene1(rgb_out[1], switchToBattleScene, kbControl, x, y, scene_state == 1, clk);
+    battleScene scene2(rgb_out[2], switchToDodgeScene, attackDamage, kbControl, x, y, scene_state == 2, reset_scene[2], clk);
+    dodgeScene scene3(rgb_out[3], switchToMapScene, receiveDamage, kbControl, x, y, scene_state == 3, reset_scene[3], clk);
     
     // HP Bar
     reg [31:0] playerHP, enemyHP;
@@ -46,7 +46,10 @@ module SceneRenderer(
         if (scene_state == 0 && kbControl > 0)
             scene_state <= 1;
         else if (scene_state == 1 && switchToBattleScene)
+        begin
             scene_state <= 2;
+            reset_scene[2] <= 1;
+        end
         else if (scene_state == 2 && switchToDodgeScene)
         begin
             enemyHP <= enemyHP - attackDamage;

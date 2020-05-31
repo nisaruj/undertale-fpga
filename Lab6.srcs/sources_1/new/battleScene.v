@@ -7,6 +7,8 @@ module battleScene(
     input [7:0] kbControl,
     input [31:0] x,
     input [31:0] y,
+    input isActive,
+    input reset,
     input clk
 //    ,
 //    output reg [7:0] attackPenalty,
@@ -19,6 +21,7 @@ module battleScene(
     reg gaugeMovingDirection; // 0 to right, 1 to left
     wire [15:0] gaugeOffset;
     wire frameClk;
+    reg miss;
     
     frameClkGenerator fclk(frameClk, clk);
     
@@ -33,14 +36,20 @@ module battleScene(
         attackPenalty = 100;
         gaugeMovingDirection = 0;
         gaugePosition = 0;
+        miss = 0;
     end
         
     always @(posedge clk)
     begin
-        if (kbControl == 32) //space 
+        if (kbControl == 32 && isActive) //space 
         begin
             attacked <= 1;
             attackDamage <= 60 - (attackPenalty * 5 / 10);
+        end
+        else if (miss && isActive && !reset)
+        begin
+            attacked <= 1;
+            attackDamage <= 0;
         end
         else
         begin
@@ -52,6 +61,7 @@ module battleScene(
     // Moving gauge pointer
     always @(posedge frameClk)
     begin
+        if (isActive)
         case ({ gaugePosition, gaugeMovingDirection })
             2'b00:
             begin
@@ -66,7 +76,10 @@ module battleScene(
             2'b10:
             begin
                 attackPenalty <= attackPenalty + 1;
-                if (attackPenalty == 100) gaugeMovingDirection <= 1;
+                if (attackPenalty == 100) 
+                begin
+                    miss <= 1;
+                end
             end
             2'b11:
             begin
@@ -74,6 +87,13 @@ module battleScene(
                 if (attackPenalty == 0) gaugePosition <= 0;
             end
         endcase
+        else 
+        begin
+            miss <= 0;
+            gaugeMovingDirection <= 0;
+            gaugePosition <= 0;
+            attackPenalty <= 100;
+        end
     end
         
     assign rgb = (text || renderGauge) ? 12'hFFF : 12'h000;
