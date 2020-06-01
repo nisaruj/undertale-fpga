@@ -11,7 +11,7 @@ module mapScene(
 );
     reg [11:0] rgb_reg;
 	reg [9:0] center_x, center_y;
-	wire renderPlayer, renderGrid;
+	wire renderPlayer, renderGrid, renderBarricade, renderPotion1, renderPotion2;
 	
 	// 4bit Random number generator
 	wire [3:0] rng;
@@ -24,10 +24,13 @@ module mapScene(
         rgb_reg = 12'hFFF;
     end
     
+    barricadeRenderer barricade(renderBarricade, {22'd0,x}, {22'd0,y}, clk);
     renderer circle(renderPlayer, {22'd0, center_x}, {22'd0,center_y}, {22'd0,x}, {22'd0,y}, 4); 
+    potionRenderer potion1(renderPotion1, {22'd0, 80}, {22'd0, 300}, {22'd0,x}, {22'd0,y}, clk);
+    potionRenderer potion2(renderPotion2, {22'd0, 300}, {22'd0, 150}, {22'd0,x}, {22'd0,y}, clk);
 //    gridRenderer grid(renderGrid, {22'd0,x}, {22'd0,y}, 8);
-   
-    assign out = (renderPlayer /*|| renderGrid*/) ? rgb_reg : 12'b0;
+    
+    assign out = ( renderPotion1 || renderPotion2 ? 12'hF00 : ((renderPlayer || renderBarricade /*|| renderGrid*/) ? rgb_reg : 12'b0));
 
     // Change to battle scene randomly
     always @(posedge clk)

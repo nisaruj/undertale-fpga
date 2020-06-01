@@ -63,6 +63,7 @@ module SceneRenderer(
         else reset_scene <= 0;
     end
     
-    assign rgb = rgb_out[scene_state] | playerBarRgb | enemyBarRgb;
-    
+//    assign rgb = rgb_out[scene_state] | playerBarRgb | enemyBarRgb;
+    assign rgb = rgb_out[1];
+        
 endmodule
