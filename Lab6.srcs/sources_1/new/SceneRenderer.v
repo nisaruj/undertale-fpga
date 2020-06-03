@@ -8,7 +8,7 @@ module SceneRenderer(
     input clk
     );
     
-    parameter N_SCENE_BIT = 2;
+    parameter N_SCENE_BIT = 3;
     reg [N_SCENE_BIT - 1: 0] scene_state;
     wire [11:0] rgb_out [2 ** N_SCENE_BIT - 1:0];
     wire switchToBattleScene, switchToMapScene, switchToDodgeScene, wasAttacked;
@@ -20,6 +20,7 @@ module SceneRenderer(
     mapScene scene1(rgb_out[1], switchToBattleScene, kbControl, x, y, scene_state == 1, clk);
     battleScene scene2(rgb_out[2], switchToDodgeScene, attackDamage, kbControl, x, y, scene_state == 2, reset_scene[2], clk);
     dodgeScene scene3(rgb_out[3], switchToMapScene, wasAttacked, receiveDamage, kbControl, x, y, scene_state == 3, reset_scene[3], clk);
+    gameoverScene scene4(rgb_out[4], x, y, clk);
     
     // HP Bar
     reg [31:0] playerHP, enemyHP;
@@ -52,16 +53,28 @@ module SceneRenderer(
         end
         else if (scene_state == 2 && switchToDodgeScene)
         begin
-            enemyHP <= enemyHP - attackDamage;
-            scene_state <= 3;
-            reset_scene[3] <= 1;
+            if (enemyHP <= attackDamage) scene_state <= 4;
+            else 
+            begin
+                enemyHP <= enemyHP - attackDamage;
+                scene_state <= 3;
+                reset_scene[3] <= 1;
+            end
         end
         else if (scene_state == 3)
         begin
             if (wasAttacked)
-                playerHP <= playerHP - receiveDamage;
+                if (playerHP <= receiveDamage) scene_state <= 4;
+                else playerHP <= playerHP - receiveDamage;
             else if (switchToMapScene)
                 scene_state <= 1;
+        end
+        else if (scene_state == 4 && kbControl > 0)
+        begin
+            scene_state = 1'b0;
+            playerHP = 32'd480;
+            enemyHP = 32'd480;
+            reset_scene = 0;
         end
         else reset_scene <= 0;
     end

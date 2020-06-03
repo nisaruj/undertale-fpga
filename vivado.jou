@@ -2,16 +2,18 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Mon Jun  1 15:44:25 2020
-# Process ID: 8068
+# Start of session at: Wed Jun  3 19:32:44 2020
+# Process ID: 4424
 # Current directory: C:/Users/Nisaruj/Desktop/undertale-fpga
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8044 C:\Users\Nisaruj\Desktop\undertale-fpga\Lab6.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5884 C:\Users\Nisaruj\Desktop\undertale-fpga\Lab6.xpr
 # Log file: C:/Users/Nisaruj/Desktop/undertale-fpga/vivado.log
 # Journal file: C:/Users/Nisaruj/Desktop/undertale-fpga\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.xpr
 update_compile_order -fileset sources_1
+close [ open C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/gameoverScene.v w ]
+add_files C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.srcs/sources_1/new/gameoverScene.v
 update_compile_order -fileset sources_1
 update_compile_order -fileset sources_1
 reset_run synth_1
@@ -23,52 +25,6 @@ open_hw_target
 set_property PROGRAM.FILE {C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/impl_1/vgaSystem.bit} [get_hw_devices xc7a35t_0]
 current_hw_device [get_hw_devices xc7a35t_0]
 refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/impl_1/vgaSystem.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/impl_1/vgaSystem.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/impl_1/vgaSystem.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/impl_1/vgaSystem.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/impl_1/vgaSystem.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 2
-wait_on_run impl_1
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/Nisaruj/Desktop/undertale-fpga/Lab6.runs/impl_1/vgaSystem.bit} [get_hw_devices xc7a35t_0]
