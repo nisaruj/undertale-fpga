@@ -52,14 +52,14 @@ module mapScene(
     end
         
     // Change to battle scene randomly
-//    always @(posedge clk)
-//        if (kbControl > 0)
-//            begin
-//            if (rng > 4'd13)
-//                sceneChangeTrigger <= 1;
-//            end
-//        else
-//            sceneChangeTrigger <= 0;
+    always @(posedge clk)
+        if (kbControl > 0)
+            begin
+            if (rng > 4'd13)
+                sceneChangeTrigger <= 1;
+            end
+        else
+            sceneChangeTrigger <= 0;
 
     always @(posedge clk)
     begin
