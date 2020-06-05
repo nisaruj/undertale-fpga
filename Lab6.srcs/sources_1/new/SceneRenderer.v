@@ -75,6 +75,11 @@ module SceneRenderer(
             begin
                 enemyHP[enemySelect] <= 0;
                 if (enemyAllDie) scene_state <= 4;
+                else
+                begin
+                    scene_state <= 3;
+                    reset_scene[3] <= 1;
+                end
             end
             else 
             begin
