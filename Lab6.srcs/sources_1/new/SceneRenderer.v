@@ -48,6 +48,10 @@ module SceneRenderer(
     assign enemyBarRgb[1] = (scene_state > 0 && renderEnemyHP[1]) ? 12'hF00 : 12'h000;
     assign enemyBarRgb[2] = (scene_state > 0 && renderEnemyHP[2]) ? 12'hF00 : 12'h000;
 
+    wire monsterRender;
+    reg [11:0] monsterRgb;
+    monsterRenderer monster(monsterRender, x, y, 256, 176, scene_state == 7 ? enemySelector : enemySelect, clk);
+
     // scene decoder
     initial
     begin
@@ -58,6 +62,13 @@ module SceneRenderer(
         enemyHP[2] = 32'd480;
         reset_scene = 0;
         enemySelect = 0;
+    end
+    
+    always @(posedge clk)
+    begin
+        if (scene_state == 7 || scene_state == 2 || scene_state == 3)
+            monsterRgb <= monsterRender ? 12'hFFF : 12'h000;
+        else monsterRgb <= 12'h000;
     end
     
     always @(posedge clk)
@@ -114,7 +125,7 @@ module SceneRenderer(
         else reset_scene <= 0;
     end
     
-    assign rgb = rgb_out[scene_state] | playerBarRgb | enemyBarRgb[0] | enemyBarRgb[1] | enemyBarRgb[2];
+    assign rgb = rgb_out[scene_state] | playerBarRgb | enemyBarRgb[0] | enemyBarRgb[1] | enemyBarRgb[2] | monsterRgb;
 //    assign rgb = rgb_out[1];
         
 endmodule
